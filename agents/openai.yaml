@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Soft Notify"
+  short_description: "Quiet Windows sounds for completion and approval"
+  default_prompt: "Use $codex-soft-notify to configure quiet completion and approval sounds."
