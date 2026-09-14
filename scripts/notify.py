@@ -187,7 +187,14 @@ def install(home, allow_existing=False):
         original = merge_hooks(original, previous, remove=True)
     updated = merge_hooks(original, command)
     if dest.resolve() != ROOT.resolve():
-        for relative in ("scripts/notify.py", "scripts/audio_design.py", "scripts/delivery.py", "scripts/panel.py", "assets/panel.html", "SKILL.md", "agents/openai.yaml", "README.md", "README.en.md", "MIGRATION.md", "LICENSE"):
+        for relative in (
+            "scripts/notify.py", "scripts/audio_design.py",
+            "scripts/delivery.py", "scripts/panel.py", "assets/panel.html",
+            "SKILL.md", "agents/openai.yaml",
+            "README.md", "README.zh-CN.md", "README.en.md",
+            "README.original.md", "README.original.en.md",
+            "MIGRATION.md", "PROVENANCE.md", "LICENSE",
+        ):
             target = dest / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / relative, target)
