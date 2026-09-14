@@ -72,8 +72,10 @@ class Queue(unittest.TestCase):
         return q.drain(self.root, lambda event,config:calls.append(event), lambda root:n.DEFAULT, **kwargs)
 
     def test_approval_priority_and_fifo(self):
-        for event in ['completion','approval','completion','approval']:q.enqueue(self.root,event)
-        calls=[];self.run_queue(calls)
+        base=100.0
+        for index,event in enumerate(['completion','approval','completion','approval']):
+            q.enqueue(self.root,event,now=base+index*.01)
+        calls=[];self.run_queue(calls,now=lambda:base+1)
         self.assertEqual(calls,['approval','approval','completion','completion'])
 
     def test_fairness_for_old_completion(self):
